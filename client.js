@@ -1,4 +1,11 @@
 const net = require("net");
+const setupInput = function() {
+  const stdin = process.stdin;
+  stdin.setRawMode(true);
+  stdin.setEncoding('utf8');
+  stdin.resume();
+  return stdin;
+};
 
 const connect = function () {
   const conn = net.createConnection({
@@ -13,24 +20,6 @@ const connect = function () {
     console.log('Successfully connected to game server');
     conn.write("Name: DOB");
     conn.write('Move: up');
-    setTimeout(() => {
-      conn.write('Move: Up')
-    }, 100)
-    setTimeout(() => {
-      conn.write('Move: left')
-    }, 200)
-    setTimeout(() => {
-      conn.write('Move: left')
-    }, 300)
-    setTimeout(() => {
-      conn.write('Move: left')
-    }, 400)
-    setTimeout(() => {
-      conn.write('Move: left')
-    }, 500)
-    setTimeout(() => {
-      conn.write('Move: left')
-    }, 600)
   });
   
   conn.on('data', (data) => {
