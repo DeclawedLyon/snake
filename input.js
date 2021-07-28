@@ -1,4 +1,5 @@
 const { connect } = require("./client");
+const {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, TALK, EFF} = require('./constants');
 let connection;
 
 const setupInput = function(conn) {
@@ -17,23 +18,23 @@ const handleUserInput = function(data) {
   if (data === '\u0003') {
     process.exit();
   }
-  if (data === 'w') {
-    connection.write('Move: up');
+  if (data === MOVE_UP.key) {
+    connection.write(MOVE_UP.move);
   }
-  if (data === 'a') {
-    connection.write('Move: left');
+  if (data === MOVE_LEFT.key) {
+    connection.write(MOVE_LEFT.move);
   }
-  if (data === 's') {
-    connection.write('Move: down');
+  if (data === MOVE_DOWN.key) {
+    connection.write(MOVE_DOWN.move);
   }
-  if (data === 'd') {
-    connection.write('Move: right');
+  if (data === MOVE_RIGHT.key) {
+    connection.write(MOVE_RIGHT.move);
   }
-  if (data === 'q') {
-    connection.write('Say: PWN')
+  if (data === TALK.q) {
+    connection.write(TALK.message);
   }
-  if (data === 'f') {
-    connection.write('Say: eff..');
+  if (data === EFF[data]) {
+    connection.write(EFF.message);
   }
 };
 
